@@ -13,11 +13,7 @@ function Navbar() {
   return (
     <header className="navbar">
       {/* Logo */}
-                <div className="logo">
-            <Link to="/">
-                <img src={logo} alt="Logo" style={{ width: "100px" }} />
-            </Link>
-            </div>
+        <div className="logo"> <Link to="/"> <img src={logo} alt="Logo" style={{ width: "100px" }} /> </Link> </div>
 
       {/* Hamburger for mobile */}
       <div className="hamburger" onClick={() => setMenuOpen(!menuOpen)}>
@@ -37,7 +33,7 @@ function Navbar() {
             {openDropdown === "why" && (
               <ul className="dropdown-menu">
                 <li><a href="/about">About Us</a></li>
-                <li><a href="#!">Our Values</a></li>
+                <li><a href="/userpage">Our Values</a></li>
               </ul>
             )}
           </li>
