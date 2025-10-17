@@ -1,7 +1,7 @@
-import mysql2 from 'mysql2/promise';
 import dotenv from "dotenv";
-
-dotenv.config();
+import mysql2 from 'mysql2/promise';
+import path from 'path';
+dotenv.config({ path: path.resolve('backend/.env') });
 
 const pool=mysql2.createPool({
     host:process.env.DB_HOST,
@@ -15,7 +15,7 @@ const pool=mysql2.createPool({
 
 const checkConnection=async()=>{
     try {
-        const connection=await pool.getConnection();
+        const connection = await pool.getConnection();
         console.log("Database Connection Successfull!!");
         connection.release();
     } catch (error) {

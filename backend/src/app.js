@@ -1,3 +1,4 @@
+import dotenv from 'dotenv';
 import express from 'express';
 import createError from 'http-errors';
 import { checkConnection } from './config/init_db.js';
@@ -6,8 +7,8 @@ import courseRoutes from './routes/courseRoutes.js';
 import videoRoutes from './routes/videoRoutes.js';
 // import {createAllTable} from './utils/dbUtils.js';
 import path from 'path';
-import dotenv from 'dotenv';
-dotenv.config();
+// dotenv.config();
+dotenv.config({ path: path.resolve('backend/.env') });
  
 const app = express()
 app.use(express.json())
@@ -35,7 +36,7 @@ app.use((err, req, res, next) => {
   })
 })
 
-const PORT = process.env.PORT || 3000
+const PORT = process.env.PORT || 5000
 
 app.listen(PORT, async() => {
   console.log(`Server running on port ${PORT}`)
@@ -43,7 +44,6 @@ app.listen(PORT, async() => {
     await checkConnection();
     // await createAllTable();
   } catch (error) {
-    console.log("Failed to initialize the database",error);
-    
+    console.log("Failed to initialize the database", error);
   }
 });
