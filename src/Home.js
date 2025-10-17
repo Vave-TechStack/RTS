@@ -12,6 +12,7 @@ import secure from "./assets/secure.jpg";
 import pod from "./assets/pod.svg";
 import card from "./assets/card.jpg";
 import "./Home.css";
+import { Link } from "react-router-dom";
 
 function Home() {
    // Testimonials array
@@ -54,7 +55,7 @@ function Home() {
     <div style={{ textAlign: "center", padding: "20px" }}>
       <header className="navbar">
         {/* Logo */}
-        <div className="logo"> <img src={logo} alt="Logo" style={{ width: "150px" }} /> </div>
+        <div className="logo"> <img src={logo} alt="Logo" style={{ width: "100px" }} /> </div>
 
         {/* Hamburger for mobile */}
         <div className="hamburger" onClick={() => setMenuOpen(!menuOpen)} >
@@ -105,6 +106,12 @@ function Home() {
                 </ul>
               )}
             </li>
+              {/* --- LOGIN BUTTON --- */}
+                  <li>
+                  <Link to="/login" className="login-btn">
+                    Login
+                  </Link>
+                </li>
           </ul>
           
         </nav>
