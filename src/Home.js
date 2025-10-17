@@ -55,7 +55,7 @@ function Home() {
     <div style={{ textAlign: "center", padding: "20px" }}>
       <header className="navbar">
         {/* Logo */}
-        <div className="logo"> <img src={logo} alt="Logo" style={{ width: "100px" }} /> </div>
+          <div className="logo"> <Link to="/"> <img src={logo} alt="Logo" style={{ width: "100px" }} /> </Link> </div>
 
         {/* Hamburger for mobile */}
         <div className="hamburger" onClick={() => setMenuOpen(!menuOpen)} >
@@ -74,7 +74,7 @@ function Home() {
               </a>
               {openDropdown === "why" && (
                 <ul className="dropdown-menu">
-                  <li> {" "} <a href="#!">About Us</a>{" "} </li>
+                  <li> <Link to="/about" className="nav-link"> About Us </Link> </li>
                   <li> {" "} <a href="#!">Our Values</a>{" "} </li>
                 </ul>
               )}
@@ -107,11 +107,7 @@ function Home() {
               )}
             </li>
               {/* --- LOGIN BUTTON --- */}
-                  <li>
-                  <Link to="/login" className="login-btn">
-                    Login
-                  </Link>
-                </li>
+                  <li> <Link to="/login" className="login-btn"> Login </Link> </li>
           </ul>
           
         </nav>
@@ -150,29 +146,33 @@ function Home() {
       <div className="stats-section">
         <div className="stat-card">
           <h1>30+</h1>
-          <h2>Years of meaningful change</h2>
+          <h2>Talent Acquisition</h2>
           <p>
-            Decades of experience building human connections with successful
-            outcomes for global Fortune100, mid-size and emerging companies.
+            Our expertise lies in identifying the best from across the 
+            industry based on the job descriptions of our clients. We 
+            begin the journey by understanding the client, culture and
+             talent landscaping. Our skilled recruiters source profiles
+              through crowd sourcing, internal
           </p>
         </div>
 
         <div className="stat-card">
           <h1>100+</h1>
-          <h2>Countries served</h2>
+          <h2>Cloud Labs</h2>
           <p>
-            Multi-lingual and diverse backgrounds ranging from management
-            consulting, design thinking and organizational psychology to systems
-            engineering, criminal justice and hostage negotiation.
+            We provide a remote technology labs. Participants or Learners
+             can access these labs from any part of the world. These labs
+              provide real-time development environment and virtualized resources 
           </p>
+          <p></p>
         </div>
 
         <div className="stat-card">
           <h1>450+</h1>
-          <h2>Orgs supported in multiple industries</h2>
+          <h2>Talent development</h2>
           <p>
-            A range of tools, methods and practices based on how humans interact
-            and what they need to continually evolve.
+            Rapid advancements in the technology space is forcing business and
+             work force to adopt changes to stay competitive in the market place.
           </p>
         </div>
       </div>
@@ -188,29 +188,22 @@ function Home() {
           <div className="who-content">
             <h2>We make a difference, together.</h2>
             <p>
-              It’s never been more important to keep up with AI, rapid
-              innovation, economic variables and societal changes. This means
-              your leadership must continually grow and develop, ensuring your
-              strategy and culture produce the results you strive for. We
-              understand every organization has unique strengths and challenges,
-              so we work closely with you to develop leaders you need.
+              RTS Techsol is an established provider of IT Trainings 
+              to enterprises across country. We have been assisting our
+               clients and executing various trainings across Technology,
+                Behavioural and Leadership areas.  In addition we are also
+                 helping them in their talent acquisition activities.
             </p>
 
-            <h2>Why Conversant?</h2>
+            <h2>Why RTS?</h2>
             <p>
-              We are a leadership development firm with a collaborative approach
-              to developing leaders and optimizing team performance and
-              cross-team collaboration. There’s no ‘one size fits all’ when it
-              comes to leadership and strategy, so together we customize the
-              best solutions for maximum impact.
+              We bring you the expertise of working with over 100+ clients 
+              across the country.  We have an experienced team to serve your
+               talent needs flexibly. Curabitur et mattis ante. Maecenas sit
+                amet commodo tellus. Phasellus fermentum pretium eros, ut 
+                faucibus velit auctor eget dolor sit amet! Lorem dolor sit
+                 glavrida amet.
             </p>
-            <p>
-              We know leadership development is a journey that never ends, so we
-              make it our mission to develop current and future leaders who make
-              every conversation an occasion to lead, with impactful and
-              meaningful results.
-            </p>
-
             <button className="know-btn">Get Know Us</button>
           </div>
         </div>

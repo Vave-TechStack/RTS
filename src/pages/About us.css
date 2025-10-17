@@ -1,0 +1,114 @@
+.about-page {
+  font-family: Arial, sans-serif;
+  color: #333;
+  line-height: 1.6;
+  padding: 20px;
+  max-width: 1200px;
+  margin: auto;
+}
+
+.about-hero {
+  text-align: center;
+  padding: 50px 20px;
+}
+
+.about-hero h1 {
+  font-size: 2.8rem;
+  color: #007bff;
+  margin-bottom: 15px;
+}
+
+.about-hero p {
+  font-size: 1.1rem;
+}
+
+.mission-vision {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  margin: 50px 0;
+}
+
+.mission, .vision {
+  flex: 1 1 400px;
+  margin: 20px;
+  text-align: center;
+}
+
+.mission img, .vision img {
+  width: 80px;
+  margin-bottom: 15px;
+}
+
+.mission h2, .vision h2 {
+  color: #007bff;
+  margin-bottom: 10px;
+}
+
+.why-choose {
+  margin: 50px 0;
+  text-align: center;
+}
+
+.why-choose h2 {
+  color: #007bff;
+  margin-bottom: 20px;
+}
+
+.why-choose ul {
+  list-style: disc;
+  margin: auto;
+  max-width: 600px;
+  text-align: left;
+}
+
+.our-team {
+  text-align: center;
+  margin: 50px 0;
+}
+
+.team-members {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 30px;
+}
+
+.member {
+  flex: 1 1 250px;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+
+.member img {
+  width: 100px;
+  border-radius: 50%;
+  margin-bottom: 10px;
+}
+
+.member h3 {
+  margin-bottom: 5px;
+  color: #007bff;
+}
+
+.about-footer {
+  text-align: center;
+  margin: 50px 0;
+  font-weight: 500;
+  font-size: 1.1rem;
+  color: #555;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .mission-vision {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .team-members {
+    flex-direction: column;
+    align-items: center;
+  }
+}

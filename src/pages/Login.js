@@ -1,5 +1,6 @@
 import React, { useState } from "react";
-import "./Login.css"; // optional CSS file
+import "./Login.css";
+import Navbar from "./NavBar";
 
 function Login() {
   const [email, setEmail] = useState("");
@@ -7,37 +8,43 @@ function Login() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    alert(`Email: ${email}\nPassword: ${password}`);
+    alert(`Email: ${email}, Password: ${password}`);
   };
 
   return (
-    <div className="login-container">
-      <h2>Login</h2>
-      <form onSubmit={handleSubmit}>
-        <div className="form-group">
-          <label>Email:</label>
-          <input
-            type="email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            required
-          />
-        </div>
+    <div>
+      {/* Navbar at top */}
+      <Navbar />
 
-        <div className="form-group">
-          <label>Password:</label>
-          <input
-            type="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            required
-          />
-        </div>
+      {/* Login form */}
+      <div className="login-container">
+        <h2>Login</h2>
+        <form onSubmit={handleSubmit}>
+          <div className="form-group">
+            <label>Email:</label>
+            <input
+              type="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              required
+            />
+          </div>
 
-        <button type="submit" className="login-submit">
-          Login
-        </button>
-      </form>
+          <div className="form-group">
+            <label>Password:</label>
+            <input
+              type="password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              required
+            />
+          </div>
+
+          <button type="submit" className="login-submit">
+            Login
+          </button>
+        </form>
+      </div>
     </div>
   );
 }
