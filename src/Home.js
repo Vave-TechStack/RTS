@@ -75,7 +75,7 @@ function Home() {
               {openDropdown === "why" && (
                 <ul className="dropdown-menu">
                   <li> <Link to="/about" className="nav-link"> About Us </Link> </li>
-                  <li> {" "} <a href="#!">Our Values</a>{" "} </li>
+                  <li> {" "} <a href="/userpage">Our Values</a>{" "} </li>
                 </ul>
               )}
             </li>
