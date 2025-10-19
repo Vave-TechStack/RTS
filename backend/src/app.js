@@ -1,3 +1,4 @@
+import { fileURLToPath } from 'url';
 import dotenv from 'dotenv';
 import express from 'express';
 import createError from 'http-errors';
@@ -5,15 +6,28 @@ import { checkConnection } from './config/init_db.js';
 import userRoutes from './routes/userRoutes.js';
 import courseRoutes from './routes/courseRoutes.js';
 import videoRoutes from './routes/videoRoutes.js';
+import cors from 'cors';
 // import {createAllTable} from './utils/dbUtils.js';
 import path from 'path';
-// dotenv.config();
+
 dotenv.config({ path: path.resolve('backend/.env') });
- 
+
 const app = express()
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+app.use('/uploads', express.static(path.join(__dirname, '..', 'uploads')));
+
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
-app.use('/uploads', express.static(path.resolve('uploads')));
+
+app.use(cors({ origin: 'http://localhost:3000', credentials: true }));
+app.use((req, res, next) => {
+  res.setHeader("Cross-Origin-Resource-Policy", "cross-origin");
+  next();
+});
+
+app.disable('x-powered-by'); // Don't advertise our server type
 
 app.get('/', async (req, res, next) => {
   res.send('Hello from express.')
@@ -38,7 +52,7 @@ app.use((err, req, res, next) => {
 
 const PORT = process.env.PORT || 5000
 
-app.listen(PORT, async() => {
+app.listen(PORT, async () => {
   console.log(`Server running on port ${PORT}`)
   try {
     await checkConnection();

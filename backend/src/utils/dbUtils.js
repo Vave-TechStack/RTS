@@ -60,6 +60,39 @@ export const getTableData = async (tableName, query) => {
   }
 };
 
+export const insertIntoTable = async (tableName, query, values) => {
+  try {
+    const [result] = await pool.query(query, values);
+    console.log(`Inserted data into ${tableName} table. Insert ID: ${result.insertId}`);
+    return result;
+  } catch (error) {
+    console.error(`Error inserting data into ${tableName}`, error);
+    throw error;
+  }
+};
+
+export const updateTableData = async (tableName, query, values) => {
+  try {
+    const [result] = await pool.query(query, values);
+    console.log(`Updated data in ${tableName} table. Affected Rows: ${result.affectedRows}`);
+    return result;
+  } catch (error) {
+    console.error(`Error updating data in ${tableName}`, error);
+    throw error;
+  }
+};
+
+export const deleteTableRow = async (tableName, query, values) => {
+  try {
+    const [result] = await pool.query(query, values);
+    console.log(`Deleted data from ${tableName} table. Affected Rows: ${result.affectedRows}`);
+    return result;
+  } catch (error) {
+    console.error(`Error deleting data from ${tableName}`, error);
+    throw error;
+  }
+};
+
 // const getUserTableQuery = `SELECT * FROM Courses;`;
 
 // export const getAllTable = async () => {

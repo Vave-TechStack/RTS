@@ -2,6 +2,7 @@ import dotenv from "dotenv";
 import mysql2 from 'mysql2/promise';
 import path from 'path';
 dotenv.config({ path: path.resolve('backend/.env') });
+// dotenv.config();
 
 const pool=mysql2.createPool({
     host:process.env.DB_HOST,
@@ -24,36 +25,15 @@ const checkConnection=async()=>{
     }
 }
 
+process.on('SIGINT', async () => {
+  try {
+    await pool.end();
+    console.log('MySQL connection pool closed.');
+    process.exit(0);
+  } catch (err) {
+    console.error('Error closing MySQL pool:', err.message);
+    process.exit(1);
+  }
+});
+
 export {pool,checkConnection};
-
-// const mongoose = require('mongoose')
-
-// mongoose
-//   .connect(process.env.MONGODB_URI, {
-//     dbName: process.env.DB_NAME,
-//     useNewUrlParser: true,
-//     useUnifiedTopology: true,
-//     useFindAndModify: false,
-//     useCreateIndex: true,
-//   })
-//   .then(() => {
-//     console.log('mongodb connected.')
-//   })
-//   .catch((err) => console.log(err.message))
-
-// mongoose.connection.on('connected', () => {
-//   console.log('Mongoose connected to db')
-// })
-
-// mongoose.connection.on('error', (err) => {
-//   console.log(err.message)
-// })
-
-// mongoose.connection.on('disconnected', () => {
-//   console.log('Mongoose connection is disconnected.')
-// })
-
-// process.on('SIGINT', async () => {
-//   await mongoose.connection.close()
-//   process.exit(0)
-// })

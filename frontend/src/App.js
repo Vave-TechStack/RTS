@@ -4,6 +4,9 @@ import Home from "./Home";
 import Login from "./pages/Login";
 import About from "./pages/About us";
 import UserPage from "./pages/userpage";
+import Dashboard from './pages/Dashboard';
+import Course from './pages/Course';
+import 'font-awesome/css/font-awesome.min.css';
 
 function App() {
   return (
@@ -17,7 +20,9 @@ function App() {
           <Route path="/login" element={<Login />} />
           {/* About Page*/}
           <Route path="/about" element={<About />} /> 
-          <Route path="/userpage" element={<UserPage />} />  
+          <Route path="/userpage" element={<UserPage />} />
+          <Route path="/dashboard" element={<Dashboard />} />  
+          <Route path="/course/:courseId" element={<Course />} /> 
         </Routes>
       </div>
     </Router>

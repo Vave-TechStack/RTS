@@ -7,9 +7,16 @@ function UserPage() {
 
   return (
     <div className="user-page">
-         {/* Navbar at top */}
+      {/* Navbar at top */}
       <Navbar />
-           <div className="content">
+      <br />
+      <br />
+      <div className="tabs">
+        <button onClick={() => setActiveTab('dashboard')}>Dashboard</button>
+        <button onClick={() => setActiveTab('profile')}>Profile</button>
+        <button onClick={() => setActiveTab('courses')}>Courses</button>
+      </div>
+      <div className="content">
         {activeTab === "dashboard" && (
           <div className="dashboard">
             <h3>Welcome Back!</h3>
