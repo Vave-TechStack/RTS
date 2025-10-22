@@ -7,7 +7,7 @@ import userRoutes from './routes/userRoutes.js';
 import courseRoutes from './routes/courseRoutes.js';
 import videoRoutes from './routes/videoRoutes.js';
 import cors from 'cors';
-// import {createAllTable} from './utils/dbUtils.js';
+import {createAllTable} from './utils/dbUtils.js';
 import path from 'path';
 
 dotenv.config({ path: path.resolve('backend/.env') });
@@ -56,7 +56,7 @@ app.listen(PORT, async () => {
   console.log(`Server running on port ${PORT}`)
   try {
     await checkConnection();
-    // await createAllTable();
+    await createAllTable();
   } catch (error) {
     console.log("Failed to initialize the database", error);
   }
