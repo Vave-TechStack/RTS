@@ -189,3 +189,52 @@ export const subscribe = async (req, res) => {
     res.status(500).json({ message: 'Internal Server Error' });
   }
 };
+
+export const createMember = async (req, res) => {
+  const { email, name, number } = req.body;
+  if (!email || !name || !number) {
+    return res.status(400).json({ message: 'Email, name & number are required' });
+  }
+  try {
+    const member = { email, name, number };
+
+    const [result] = await pool.query(
+      'INSERT INTO members (email, name, number) VALUES (?, ?, ?)',
+      [email, name, number]
+    );
+    console.log('Member added with ID:', result.insertId);
+
+    res.status(201).json({ message: 'Member added successfully', member });
+  } catch (err) {
+    console.error('Error creating user:', err);
+
+    if (err.code === 'ER_DUP_ENTRY') {
+      return res.status(409).json({ message: 'Email already exists' });
+    }
+
+    res.status(500).json({ message: 'Internal server error' });
+  }
+};
+
+export const getMember = async (req, res) => {
+  try {
+    const { role } = req.query;
+    let query = 'SELECT id, email, name, number, created_at FROM members';
+    let params = [];
+
+    // if (role) {
+    //   query += ' WHERE role = ?';
+    //   params.push(role);
+    // }
+
+    const [rows] = await pool.query(query, params);
+
+    res.status(200).json({
+      message: 'members fetched successfully',
+      users: rows,
+    });
+  } catch (err) {
+    console.error('Error fetching users:', err);
+    res.status(500).json({ message: 'Internal server error' });
+  }
+};

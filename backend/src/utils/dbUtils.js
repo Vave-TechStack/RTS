@@ -46,6 +46,14 @@ const userVideoProgressTableQuery = `CREATE TABLE IF NOT EXISTS user_video_progr
     FOREIGN KEY (video_id) REFERENCES videos(id) ON DELETE CASCADE
 )`;
 
+const memberTableQuery = `CREATE TABLE IF NOT EXISTS members (
+        id INT AUTO_INCREMENT PRIMARY KEY,
+        name VARCHAR(100),
+        email VARCHAR(100) NOT NULL UNIQUE,
+        number INT,
+        created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+    );`;
+
 const createTable = async (tableName, query) => {
   try {
     await pool.query(query);
@@ -61,6 +69,7 @@ export const createAllTable = async () => {
     await createTable("Courses", courseTableQuery);
     await createTable("Videos", videoTableQuery);
     await createTable("Progress", userVideoProgressTableQuery);
+    await createTable("Members", memberTableQuery);
     console.log("All tables created successfully or already exists!!");
   } catch (error) {
     console.log("Error creating tables", error);

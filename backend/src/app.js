@@ -9,7 +9,7 @@ import videoRoutes from './routes/videoRoutes.js';
 import cors from 'cors';
 import { createAllTable } from './utils/dbUtils.js';
 import path from 'path';
-import { subscribe } from './controllers/userController.js';
+// import { subscribe } from './controllers/userController.js';
 
 dotenv.config({ path: path.resolve('backend/.env') });
 
@@ -33,7 +33,10 @@ app.disable('x-powered-by'); // Don't advertise our server type
 app.get('/', async (req, res, next) => {
   res.send('Hello from express.')
 })
-app.post('/subscribe-newsletter', subscribe);
+
+// app.post('/subscribe-newsletter', subscribe); 
+//need backend production website to allow gmail
+
 app.use('/api/users', userRoutes);
 app.use('/api/courses', courseRoutes);
 app.use('/api/videos', videoRoutes);

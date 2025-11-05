@@ -45,6 +45,13 @@ VALUES
 (1, 'Setting Up Development Environment', 'https://example.com/videos/setup.mp4'),
 (1, 'Building First Node.js App', 'https://example.com/videos/node-app.mp4');
 
+CREATE TABLE members (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(100),
+    email VARCHAR(100) NOT NULL UNIQUE,
+    number INT
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
 -----------------------------
 
 -- List all courses
