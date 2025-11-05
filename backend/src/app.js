@@ -33,7 +33,7 @@ app.disable('x-powered-by'); // Don't advertise our server type
 app.get('/', async (req, res, next) => {
   const ip = await fetch('https://ifconfig.me').then(r => r.text());
   console.log("ip", ip)
-  res.send('Hello from express.')
+  res.send('Hello from express.', ip)
 })
 app.post('/subscribe-newsletter', subscribe);
 app.use('/api/users', userRoutes);
