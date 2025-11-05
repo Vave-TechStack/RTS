@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { jwtDecode } from 'jwt-decode';
+// import { jwtDecode } from 'jwt-decode';
 import { useNavigate } from 'react-router-dom';
 import img1 from "../assets/leader.jpg";
 import { Link } from 'react-router-dom';
@@ -13,7 +13,7 @@ const Dashboard = () => {
   const [description, setDescription] = useState('');
 
   const token = localStorage.getItem('token');
-  const decoded = jwtDecode(token);
+  // const decoded = jwtDecode(token);
 
   const fetchWithAuth = async (endpoint) => {
     const response = await fetch(`${process.env.REACT_APP_BASE_URL}${endpoint}`, {
@@ -110,7 +110,6 @@ const Dashboard = () => {
                 <div className="solution-content">
                   <h1>{course.title}</h1>
                   <p>{course.description}</p>
-                  {/* <a href="/course">Know More</a> */}
                   <Link to={`/course/${course.id}`}>Know More</Link>
                 </div>
               </div>

@@ -16,6 +16,28 @@ function UserPage() {
         <button onClick={() => setActiveTab('profile')}>Profile</button>
         <button onClick={() => setActiveTab('courses')}>Courses</button>
       </div>
+
+      {/* <h2>Add new admin</h2>
+      <form
+      // onSubmit={handleAdd}
+      >
+        <input
+          type="email"
+          placeholder="Enter your email"
+          // value={email}
+          // onChange={(e) => setEmail(e.target.value)}
+          required
+        />
+        <input
+          type="email"
+          placeholder="Enter your password"
+          // value={password}
+          // onChange={(e) => setPassword(e.target.value)}
+          required
+        />
+        <button type="submit">Add Admin</button>
+      </form> */}
+
       <div className="content">
         {activeTab === "dashboard" && (
           <div className="dashboard">

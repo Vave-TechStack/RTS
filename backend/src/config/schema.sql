@@ -3,7 +3,7 @@ USE course_app;
 
 CREATE TABLE users (
     id INT AUTO_INCREMENT PRIMARY KEY,
-    name VARCHAR(100) NOT NULL,
+    name VARCHAR(100),
     email VARCHAR(100) NOT NULL UNIQUE,
     password VARCHAR(255) NOT NULL, -- hashed password
     role ENUM('admin', 'student') DEFAULT 'student',
@@ -46,9 +46,6 @@ VALUES
 (1, 'Building First Node.js App', 'https://example.com/videos/node-app.mp4');
 
 -----------------------------
-
--- List all users
-SELECT * FROM users;
 
 -- List all courses
 SELECT * FROM courses;

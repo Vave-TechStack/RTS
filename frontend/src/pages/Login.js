@@ -29,10 +29,7 @@ function Login() {
 
 
       const decoded = jwtDecode(data.token);
-      console.log('Decoded token:', decoded);
-      // const role = "admin"
-      const role = "student"
-      if (role === "admin") {
+      if (decoded.role === "admin") {
         navigate('/dashboard'); // 👈 Route to protected/dashboard page
       } else {
         navigate('/userpage');

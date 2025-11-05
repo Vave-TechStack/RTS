@@ -1,12 +1,13 @@
 import jwt from 'jsonwebtoken';
 import { pool } from '../config/init_db.js';
 import bcrypt from 'bcrypt'
+import nodemailer from 'nodemailer'
 
 export const login = async (req, res) => {
   const { email, password, role = 'student' } = req.body;
 
-  const generateToken = (email) => {
-    return jwt.sign({ email, role }, process.env.JWT_SECRET, { expiresIn: '24h' });
+  const generateToken = (email, userId) => {
+    return jwt.sign({ email, role, userId }, process.env.JWT_SECRET, { expiresIn: '24h' });
   };
 
   if (!email) {
@@ -22,16 +23,16 @@ export const login = async (req, res) => {
       });
     }
 
-    // const user = rows[0];
-    // const isMatch = await bcrypt.compare(password, user.password);
-    // if (!isMatch) {
-    //   return res.status(409).json({
-    //     statusCode: 409,
-    //     message: "Invalid Password",
-    //   });
-    // }
+    const user = rows[0];
+    const isMatch = await bcrypt.compare(password, user.password);
+    if (!isMatch) {
+      return res.status(409).json({
+        statusCode: 409,
+        message: "Invalid Password",
+      });
+    }
 
-    const token = generateToken(email);
+    const token = generateToken(email, rows[0].id);
     const [updateResult] = await pool.query(
       `UPDATE users SET token = ?, created_at = NOW() WHERE email = ?`,
       [token, email]
@@ -94,7 +95,7 @@ export const createUser = async (req, res) => {
   }
 
   // const user = rows[0];
-  // if (user.admin !== 1) {
+  // if (user.admin !== "admin") {
   //   return res.status(409).json({
   //     statusCode: 409,
   //     message: "Email doesn't have access",
@@ -144,5 +145,48 @@ export const getUsers = async (req, res) => {
   } catch (err) {
     console.error('Error fetching users:', err);
     res.status(500).json({ message: 'Internal server error' });
+  }
+};
+
+export const subscribe = async (req, res) => {
+  // Configure your email transporter (example using Gmail)
+  const transporter = nodemailer.createTransport({
+    service: 'gmail',
+    auth: {
+      user: process.env.NEWSLETTER_EMAIL, // your email
+      pass: process.env.NEWSLETTER_PASSWORD, // your email password
+      
+    },
+  });
+
+  try {
+    const { email } = req.body;
+    if (!email) {
+      return res.status(400).json({ message: 'Email is required' });
+    }
+
+    // const [users] = await pool.query('SELECT id, subscribed FROM users WHERE email = ?', [email]);
+    // const user = users[0];
+    // if (user.subscribed === 1) {
+    //   return res.status(400).json({ message: 'Email already subscribed' });
+    // }
+
+    // await pool.query('UPDATE users SET subscribed = 1 WHERE id = ?', [user.id]);
+
+    // Send confirmation email
+    const mailOptions = {
+      // from: process.env.EMAIL_USER,
+      from: process.env.NEWSLETTER_EMAIL,
+      to: email,
+      subject: 'Newsletter Subscription Confirmation',
+      text: `Hello! You have successfully subscribed to our newsletter.`,
+    };
+
+    await transporter.sendMail(mailOptions);
+
+    res.status(201).json({ message: 'Subscribed successfully', subscriber: "" });
+  } catch (error) {
+    console.error('Error subscribing to newsletter:', error);
+    res.status(500).json({ message: 'Internal Server Error' });
   }
 };

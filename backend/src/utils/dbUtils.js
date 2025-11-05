@@ -2,10 +2,11 @@ import { pool } from "../config/init_db.js";
 
 const userTableQuery = `CREATE TABLE IF NOT EXISTS users (
         id INT AUTO_INCREMENT PRIMARY KEY,
-        name VARCHAR(100) NOT NULL,
+        name VARCHAR(100),
         email VARCHAR(100) NOT NULL UNIQUE,
         password VARCHAR(255) NOT NULL,
         role ENUM('admin', 'student') DEFAULT 'student',
+        token VARCHAR(255) DEFAULT NULL,
         created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
     );`;
 
@@ -23,9 +24,27 @@ const videoTableQuery = `CREATE TABLE IF NOT EXISTS videos (
     course_id INT NOT NULL,
     title VARCHAR(255) NOT NULL,
     video_url TEXT NOT NULL,
+    duration_seconds INT DEFAULT NULL,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    FOREIGN KEY (course_id) REFERENCES courses(id)
+    FOREIGN KEY (course_id) REFERENCES courses(id) ON DELETE CASCADE
 );`;
+
+const userVideoProgressTableQuery = `CREATE TABLE IF NOT EXISTS user_video_progress (
+    id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    user_id INT NOT NULL UNIQUE,
+    course_id INT NOT NULL,
+    video_id INT NOT NULL UNIQUE,
+    is_completed TINYINT(1) DEFAULT 0,
+    completed_at TIMESTAMP NULL DEFAULT NULL,
+    watch_seconds INT DEFAULT 0,
+    last_watched_at TIMESTAMP NULL DEFAULT NULL,
+    last_position_seconds INT DEFAULT 0,
+    KEY course_id_idx (course_id),
+    KEY video_id_idx (video_id),
+    FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE,
+    FOREIGN KEY (course_id) REFERENCES courses(id) ON DELETE CASCADE,
+    FOREIGN KEY (video_id) REFERENCES videos(id) ON DELETE CASCADE
+)`;
 
 const createTable = async (tableName, query) => {
   try {
@@ -41,7 +60,8 @@ export const createAllTable = async () => {
     await createTable("Users", userTableQuery);
     await createTable("Courses", courseTableQuery);
     await createTable("Videos", videoTableQuery);
-    console.log("All tables created successfully!!");
+    await createTable("Progress", userVideoProgressTableQuery);
+    console.log("All tables created successfully or already exists!!");
   } catch (error) {
     console.log("Error creating tables", error);
     throw error;

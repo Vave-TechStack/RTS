@@ -7,8 +7,9 @@ import userRoutes from './routes/userRoutes.js';
 import courseRoutes from './routes/courseRoutes.js';
 import videoRoutes from './routes/videoRoutes.js';
 import cors from 'cors';
-// import {createAllTable} from './utils/dbUtils.js';
+import {createAllTable} from './utils/dbUtils.js';
 import path from 'path';
+import { subscribe } from './controllers/userController.js';
 
 dotenv.config({ path: path.resolve('backend/.env') });
 
@@ -32,6 +33,7 @@ app.disable('x-powered-by'); // Don't advertise our server type
 app.get('/', async (req, res, next) => {
   res.send('Hello from express.')
 })
+app.post('/subscribe-newsletter', subscribe);
 app.use('/api/users', userRoutes);
 app.use('/api/courses', courseRoutes);
 app.use('/api/videos', videoRoutes);
@@ -56,7 +58,7 @@ app.listen(PORT, async () => {
   console.log(`Server running on port ${PORT}`)
   try {
     await checkConnection();
-    // await createAllTable();
+    await createAllTable();
   } catch (error) {
     console.log("Failed to initialize the database", error);
   }
