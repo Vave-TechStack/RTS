@@ -13,7 +13,8 @@ const pool = mysql2.createPool({
   connectionLimit: 10,
   queueLimit: 0,
   waitForConnections: true,
-  connectTimeout: 10000
+  connectTimeout: 10000,
+  family: 4,
 });
 
 const checkConnection = async () => {

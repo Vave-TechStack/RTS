@@ -6,7 +6,7 @@ import About from "./pages/About us";
 import UserPage from "./pages/userpage";
 import Dashboard from './pages/Dashboard';
 import Course from './pages/Course';
-import Services from './pages/services';
+import Services from './pages/Services';
 import 'font-awesome/css/font-awesome.min.css';
 
 function App() {
