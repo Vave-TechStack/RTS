@@ -31,10 +31,10 @@ app.use((req, res, next) => {
 app.disable('x-powered-by'); // Don't advertise our server type
 
 app.get('/', async (req, res, next) => {
-  const res = await fetch("https://ifconfig.me", {
+  const result = await fetch("https://ifconfig.me", {
     headers: { "User-Agent": "curl/7.64.1" },
   });
-  const ip = await res.text();
+  const ip = await result.text();
   console.log("ip", ip)
   res.send('Hello from express.', ip)
 })
