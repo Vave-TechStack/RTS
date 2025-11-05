@@ -39,34 +39,23 @@ function Navbar() {
           </li>
 
           <li className="dropdown-item">
-            <a href="#!" className="nav-link" onClick={() => toggleDropdown("solutions")}>
+            <a href="/Services" className="nav-link" onClick={() => toggleDropdown("solutions")}>
               Services{" "}
-              <span className="arrow">{openDropdown === "solutions" ? "▴" : "▾"}</span>
+              {/* <span className="arrow">{openDropdown === "solutions" ? "▴" : "▾"}</span> */}
             </a>
-            {openDropdown === "solutions" && (
-              <ul className="dropdown-menu">
-                <li><a href="#!">Rise To Scale</a></li>
-              </ul>
-            )}
+            {/* {openDropdown === "solutions" && ( <ul className="dropdown-menu"> <li><a href="#!">Rise To Scale</a></li> </ul> )} */}
           </li>
 
-          <li>
-            <a href="#!" className="nav-link">Success Stories</a>
-          </li>
+          <li> <a href="#!" className="nav-link">Success Stories</a> </li>
 
           <li className="dropdown-item">
             <a href="#!" className="nav-link" onClick={() => toggleDropdown("resources")}>
-              Resources Our Team{" "}
-              <span className="arrow">{openDropdown === "resources" ? "▴" : "▾"}</span>
+              Resources{" "}
+              {/* <span className="arrow">{openDropdown === "resources" ? "▴" : "▾"}</span> */}
             </a>
-            {openDropdown === "resources" && (
-              <ul className="dropdown-menu">
-                <li><a href="#!">Our Team</a></li>
-                <li><a href="#!">Guides</a></li>
-              </ul>
-            )}
+            {/* {openDropdown === "resources" && ( <ul className="dropdown-menu"> <li><a href="#!">Our Team</a></li> <li><a href="#!">Guides</a></li> </ul> )} */}
           </li>
-
+            <li> <a href="#!" className="nav-link">Our Team</a> </li>
           {/* --- LOGIN BUTTON --- */}
           <li>
             <Link to="/login" className="login-btn">

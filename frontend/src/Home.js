@@ -14,9 +14,10 @@ import card from "./assets/card.jpg";
 import "./Home.css";
 import { Link } from "react-router-dom";
 
+
 function Home() {
    // Testimonials array
-  const testimonials = [ { text: "Conversant helped us transform our leadership culture — invaluable.", author: "Sarah Johnson", }, { text: "Their approach brought measurable change to our organization.", author: "Mark Lee", }, { text: "Our leaders are more connected and confident thanks to Conversant.", author: "Priya Sharma", }, { text: "We learned how to make every conversation meaningful.", author: "John Miller", }, { text: "Authentic connection and clarity in leadership — Conversant made it possible.", author: "Aisha Patel", }, ];
+  const testimonials = [ { text: "Bringing together senior leaders from across TAO India for the Mastering Customer Experience through Leadership Excellence leadership training program was an experience in itself—one that reminded me just how powerful learning can be when done together. ", author: "Raghu Ram Burra", link: "https://shorturl.at/fvlUs", }, { text: "Their approach brought measurable change to our organization.", author: "Mark Lee", }, { text: "Our leaders are more connected and confident thanks to Conversant.", author: "Priya Sharma", }, { text: "We learned how to make every conversation meaningful.", author: "John Miller", }, { text: "Authentic connection and clarity in leadership — Conversant made it possible.", author: "Aisha Patel", }, ];
   const [openDropdown, setOpenDropdown] = useState(null);
   const [menuOpen, setMenuOpen] = useState(false); // mobile hamburger
   const [searchOpen, setSearchOpen] = useState(false);
@@ -81,31 +82,24 @@ function Home() {
             </li>
 
             <li className="dropdown-item">
-              <a href="#!" className="nav-link" onClick={() => toggleDropdown("solutions")} >
+              <a href="/Services" className="nav-link" onClick={() => toggleDropdown("solutions")} >
                 Services{" "}
-                <span className="arrow"> {" "} {openDropdown === "solutions" ? "▴" : "▾"}{" "} </span>
+                {/* <span className="arrow"> {" "} {openDropdown === "solutions" ? "▴" : "▾"}{" "} </span> */}
               </a>
-              {openDropdown === "solutions" && (
-                <ul className="dropdown-menu">
-                  <li> {" "} <a href="#!">Rise To Scale</a>{" "} </li>
-                  
-                </ul>
-              )}
+              {/* {openDropdown === "solutions" && ( <ul className="dropdown-menu"> <li> {" "} <a href="#!">Rise To Scale</a>{" "} </li> </ul> )} */}
             </li>
             <li> {" "} <a href="#!" className="nav-link" > {" "} Success Stories{" "} </a>{" "} </li>
 
             <li className="dropdown-item">
               <a href="#!" className="nav-link" onClick={() => toggleDropdown("resources")} >
-                Resources Our Team{" "}
-                <span className="arrow"> {" "} {openDropdown === "resources" ? "▴" : "▾"}{" "} </span>
+                Resources{" "}
+                {/* <span className="arrow"> {" "} {openDropdown === "resources" ? "▴" : "▾"}{" "} </span> */}
               </a>
-              {openDropdown === "resources" && (
-                <ul className="dropdown-menu">
-                   {" "} <li> <a href="#!">Our Team</a>{" "} </li>
-                {" "} <li> <a href="#!">Guides</a> </li> 
-                </ul>
-              )}
+              {/* {openDropdown === "resources" && (
+                <ul className="dropdown-menu"> {" "} <li> <a href="#!">Our Team</a>{" "} </li> {" "} <li> <a href="#!">Guides</a> </li> </ul>
+              )} */}
             </li>
+            <li> {" "} <a href="#!" className="nav-link" > {" "} Our Team{" "} </a>{" "} </li>
               {/* --- LOGIN BUTTON --- */}
                   <li> <Link to="/login" className="login-btn"> Login </Link> </li>
           </ul>
@@ -120,7 +114,7 @@ function Home() {
       )}
 
       <div>
-        <h1 className="maintext"> {" "} Conversations are <br></br>the Work.{" "} </h1>
+        <h1 className="maintext"> {" "} Rise To Scale.{" "} </h1>
         <button className="btn_1">Our journey With You</button>
       </div>
 
@@ -137,9 +131,7 @@ function Home() {
         <div className="vision-left"> {" "} <h1>Our Vision in Action</h1>{" "} </div>
         <div className="vision-right">
           <p>
-            We awaken the world to the power and joy of authentic human
-            connection, setting a new standard for leadership that produces
-            meaningful, enduring impact.
+            To empower organizations to rise to scale by delivering innovative, future-ready workforce development solutions that drive transformation, accelerate growth, and create lasting impact.
           </p>
         </div>
       </div>
@@ -188,22 +180,21 @@ function Home() {
           <div className="who-content">
             <h2>We make a difference, together.</h2>
             <p>
-              RTS Techsol is an established provider of IT Trainings 
-              to enterprises across country. We have been assisting our
-               clients and executing various trainings across Technology,
-                Behavioural and Leadership areas.  In addition we are also
-                 helping them in their talent acquisition activities.
+              RTS Techsol is where innovation meets excellence in technology services. We are a trusted strategic partner helping organizations navigate the complexities of modern business transformation. Our strength lies in combining deep domain expertise with forward-thinking training solutions to help enterprises stay agile, scalable, and competitive in a rapidly changing world.
             </p>
 
-            <h2>Why RTS?</h2>
+            <h2>What We Do</h2>
             <p>
-              We bring you the expertise of working with over 100+ clients 
-              across the country.  We have an experienced team to serve your
-               talent needs flexibly. Curabitur et mattis ante. Maecenas sit
-                amet commodo tellus. Phasellus fermentum pretium eros, ut 
-                faucibus velit auctor eget dolor sit amet! Lorem dolor sit
-                 glavrida amet.
+              At RTS Techsol, we go beyond addressing current challenges — we enable sustainable transformation.
             </p>
+            <p>Our comprehensive offerings include:</p>
+            <ul>
+              <li>Technology Solutions that enhance efficiency, scalability, and agility.</li>
+              <li>Training and Talent Development programs that prepare teams for future demands.</li>
+              <li>Strategic Consulting that aligns people, process, and technology for measurable outcomes.</li>
+              <li>Leadership programs that elevate executive potential, build & accelerate transformations and sustainable growth.</li>
+            </ul>
+            <p>Together, we design programs for businesses and professionals to thrive for greater good.</p>
             <button className="know-btn">Get Know Us</button>
           </div>
         </div>
@@ -220,17 +211,17 @@ function Home() {
           <img src={img1} alt="Leadership Development" />
         </div>
         <div className="solution-content">
-          <h1>Leadership Development & Coaching</h1>
+          <h1>Coaching Leaders at Every Level</h1>
           <p>
-            Development and coaching for leaders at every level. More than
-            typical leadership training, our approach incorporates your
-            organizational values and builds unique, experiential solutions that
-            grow untapped talent.
+            Our leadership development goes beyond traditional training. 
+            We design experiential and value-driven programs that align with 
+            your organization’s culture while unlocking the potential of emerging 
+            and established leaders alike.
           </p>
           <p>
-            Our solutions can be fully customized to meet your needs, or you can
-            join leaders from other organizations in ongoing programs we offer
-            throughout the year.
+            Each solution can be fully customized to address your specific goals—or
+             you can participate in our open programs, where leaders from diverse 
+             organizations come together to learn, collaborate, and grow.
           </p>
           <a href="#">Know More</a>
         </div>
@@ -241,11 +232,11 @@ function Home() {
           <img src={img2} alt="Team Performance" />
         </div>
         <div className="solution-content">
-          <h1>Team Performance</h1>
+          <h1>Team Synergy</h1>
           <p>
-            Custom solutions designed to uplevel team performance, refine
-            cross-functional collaboration, and overcome challenges for
-            organizational success.
+            Empowering teams through custom solutions that build synergy across functions,
+             strengthen collaboration, and transform challenges into opportunities for 
+             lasting success.
           </p>
           <a href="#">Know More</a>
         </div>
@@ -256,11 +247,11 @@ function Home() {
           <img src={img3} alt="Strategy Implementation" />
         </div>
         <div className="solution-content">
-          <h1>Strategy Implementation</h1>
+          <h1>Strategy at Work</h1>
           <p>
-            Taking a human-centric approach to strategy implementation and
-            engagement, we create meaningful journeys your employees want to be
-            a part of.
+            Adopting an organisation centric strategy with elements of 
+            human-centric approach, we create meaningful tranformational
+            trainings with practioner mindset.
           </p>
           <a href="#">Know More</a>
         </div>
@@ -271,11 +262,12 @@ function Home() {
           <img src={img4} alt="Change Leadership" />
         </div>
         <div className="solution-content">
-          <h1>Change Leadership</h1>
+          <h1>Leading With Agility</h1>
           <p>
-            Programmatic methods to guide you through change management and
-            leadership with enablement and training so your team can own future
-            change.
+            Strategic, programmatic methods that drive transformation—guiding
+             you through effective change management and leadership enablement.
+              Our approach empowers teams to adapt, collaborate, and confidently 
+              lead future change with agility and purpose.
           </p>
           <a href="#">Know More</a>
         </div>
@@ -286,11 +278,11 @@ function Home() {
           <img src={img5} alt="Multi-Group Collaboration" />
         </div>
         <div className="solution-content">
-          <h1>Multi-Group Collaboration</h1>
+          <h1>Practical Conversations for Meaningful Outcomes</h1>
           <p>
-            Custom solutions to help you thrive in complex collaborations with
-            industry, government, and external organizations through proven
-            negotiation and system mapping tools.
+            Empowering teams to communicate with clarity and impact—through 
+            custom solutions, negotiation frameworks, and system mapping tools
+             that turn collaboration into tangible results.
           </p>
           <a href="#">Know More</a>
         </div>
@@ -304,7 +296,7 @@ function Home() {
       <div className="testimonials-container">
         <h2>What Our Clients Say</h2>
         <div className="testimonial-slide">
-          <p className="testimonial-text">“{testimonials[currentIndex].text}”</p>
+          <p className="testimonial-text">“{testimonials[currentIndex].text}” <a href={testimonials[currentIndex].link} target="_blank" rel="noopener noreferrer" className="text-blue-500 underline" >Read More</a></p>
           <h4 className="testimonial-author">— {testimonials[currentIndex].author}</h4>
         </div>
         <div className="testimonial-dots">
@@ -396,8 +388,8 @@ function Home() {
   <div className="footer-container">
     {/* Contact Section */}
     <div className="footer-section">
-      <p>📞 +91 6301540477</p>
-      <p>✉️ info@rtstechsol.com</p>
+      <p> +91 6301540477</p>
+      <p> info@rtstechsol.com</p>
     </div>
 
     {/* Conversant Links */}
