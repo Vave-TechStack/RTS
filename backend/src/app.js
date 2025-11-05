@@ -7,7 +7,7 @@ import userRoutes from './routes/userRoutes.js';
 import courseRoutes from './routes/courseRoutes.js';
 import videoRoutes from './routes/videoRoutes.js';
 import cors from 'cors';
-import {createAllTable} from './utils/dbUtils.js';
+import { createAllTable } from './utils/dbUtils.js';
 import path from 'path';
 import { subscribe } from './controllers/userController.js';
 
@@ -31,6 +31,8 @@ app.use((req, res, next) => {
 app.disable('x-powered-by'); // Don't advertise our server type
 
 app.get('/', async (req, res, next) => {
+  const ip = await fetch('https://ifconfig.me').then(r => r.text());
+  console.log("ip", ip)
   res.send('Hello from express.')
 })
 app.post('/subscribe-newsletter', subscribe);
