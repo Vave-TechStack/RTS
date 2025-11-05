@@ -155,7 +155,6 @@ export const subscribe = async (req, res) => {
     auth: {
       user: process.env.NEWSLETTER_EMAIL, // your email
       pass: process.env.NEWSLETTER_PASSWORD, // your email password
-      
     },
   });
 
@@ -164,7 +163,7 @@ export const subscribe = async (req, res) => {
     if (!email) {
       return res.status(400).json({ message: 'Email is required' });
     }
-
+    console.log("Subscription processing")
     // const [users] = await pool.query('SELECT id, subscribed FROM users WHERE email = ?', [email]);
     // const user = users[0];
     // if (user.subscribed === 1) {

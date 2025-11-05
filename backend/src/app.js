@@ -31,12 +31,7 @@ app.use((req, res, next) => {
 app.disable('x-powered-by'); // Don't advertise our server type
 
 app.get('/', async (req, res, next) => {
-  const result = await fetch("https://ifconfig.me", {
-    headers: { "User-Agent": "curl/7.64.1" },
-  });
-  const ip = await result.text();
-  console.log("ip", ip)
-  res.send('Hello from express.', ip)
+  res.send('Hello from express.')
 })
 app.post('/subscribe-newsletter', subscribe);
 app.use('/api/users', userRoutes);
