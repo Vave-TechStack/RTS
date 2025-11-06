@@ -2,6 +2,9 @@
 node_modules/
 uploads/
 
+!uploads/.gitkeep
+*.log
+
 # Environment variables
 .env
 .env.local
