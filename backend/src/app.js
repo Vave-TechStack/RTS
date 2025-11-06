@@ -46,6 +46,7 @@ app.use(async (req, res, next) => {
 })
 
 app.use((err, req, res, next) => {
+  console.log("error", err)
   res.status(err.status || 500)
   res.send({
     error: {
