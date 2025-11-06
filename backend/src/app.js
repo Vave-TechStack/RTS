@@ -30,6 +30,11 @@ app.use((req, res, next) => {
 
 app.disable('x-powered-by'); // Don't advertise our server type
 
+app.use((req, res, next) => {
+  console.log(`${req.method} ${req.originalUrl}`);
+  next();
+});
+
 app.get('/', async (req, res, next) => {
   res.send('Hello from express.')
 })
@@ -41,11 +46,12 @@ app.use('/api/users', userRoutes);
 app.use('/api/courses', courseRoutes);
 app.use('/api/videos', videoRoutes);
 
-app.use(async (req, res, next) => {
-  console.log("req", req)
-  next(createError.NotFound())
-})
+// 404 handler
+app.use((req, res, next) => {
+  next(createError(404));
+});
 
+// Error handler
 app.use((err, req, res, next) => {
   console.log("error", err)
   res.status(err.status || 500)
