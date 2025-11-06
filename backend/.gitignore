@@ -1,6 +1,6 @@
 # Node.js dependencies
 node_modules/
-uploads/
+uploads2/
 
 # Environment variables
 .env
