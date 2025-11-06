@@ -2,7 +2,7 @@
 import { getTableData, insertIntoTable } from '../utils/dbUtils.js';
 
 export const getAllCourses = async (req, res) => {
-  const query = 'SELECT * FROM Courses';
+  const query = 'SELECT * FROM courses';
   try {
     const courses = await getTableData('Courses', query);
     res.status(200).json({
