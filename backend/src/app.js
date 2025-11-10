@@ -36,7 +36,13 @@ app.use((req, res, next) => {
 });
 
 app.get('/', async (req, res, next) => {
-  res.send('Hello from express.')
+  // res.send('Hello from express.')
+  const result = await fetch("https://ifconfig.me", {
+    headers: { "User-Agent": "curl/7.64.1" },
+  });
+  const ip = await result.text();
+  console.log("ip", ip)
+  res.send('Hello from express.', ip)
 })
 
 // app.post('/subscribe-newsletter', subscribe); 
