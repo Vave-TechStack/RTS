@@ -17,16 +17,36 @@ const pool = mysql2.createPool({
   family: 4,
 });
 
-const checkConnection = async () => {
-  try {
-    const connection = await pool.getConnection();
-    console.log("Database Connection Successfull!!");
-    connection.release();
-  } catch (error) {
-    console.log("Error connecting to database!");
-    throw error;
+// const checkConnection = async () => {
+//   try {
+//     const connection = await pool.getConnection();
+//     console.log("Database Connection Successfull!!");
+//     connection.release();
+//   } catch (error) {
+//     console.log("Error connecting to database!");
+//     throw error;
+//   }
+// }
+
+const checkConnection = async (retries = 5, delay = 5000) => {
+  for (let attempt = 1; attempt <= retries; attempt++) {
+    try {
+      const connection = await pool.getConnection();
+      console.log("Database connection successful!");
+      connection.release();
+      return true;
+    } catch (error) {
+      console.error(`Error connecting to database (attempt ${attempt}/${retries}): ${error.code}`);
+      if (attempt < retries) {
+        console.log(`Retrying in ${delay / 1000} seconds...`);
+        await new Promise((resolve) => setTimeout(resolve, delay));
+      } else {
+        console.error("All retry attempts failed. Database still unreachable.");
+        throw error; // stop retrying after last attempt
+      }
+    }
   }
-}
+};
 
 process.on('SIGINT', async () => {
   try {
