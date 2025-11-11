@@ -23,7 +23,7 @@ export const uploadVideo = async (req, res) => {
     const url = `${process.env.HOST_URL}/uploads/${videoPath}`;
 
     const query = 'INSERT INTO videos (title, course_id, video_url, duration_seconds) VALUES (?, ?, ?, ?)';
-    const values = [videoTitle, course_id, videoPath, duration_seconds];
+    const values = [videoTitle, course_id, url, duration_seconds];
 
     await pool.query(query, values);
 
