@@ -18,14 +18,8 @@ export const uploadVideo = async (req, res) => {
       title = baseName.trim();
     }
     const videoTitle = title;
-
-    const ext = path.extname(video.filename);
-    const baseName = path.basename(video.filename, ext);
-    const safeBaseName = baseName
-      .toLowerCase()
-      .replace(/\s+/g, '-')
-      .replace(/[^a-z0-9-_]/g, '');
-    const videoPath = `${safeBaseName}${ext}`;
+    
+    const videoPath = video.filename.replace(/\s+/g, '-')
     const url = `${process.env.HOST_URL}/uploads/${videoPath}`;
 
     const query = 'INSERT INTO videos (title, course_id, video_url, duration_seconds) VALUES (?, ?, ?, ?)';
