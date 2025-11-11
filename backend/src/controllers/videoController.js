@@ -13,12 +13,12 @@ export const uploadVideo = async (req, res) => {
     }
 
     if (!title || title.trim() === '') {
-      const ext = path.extname(video.originalname);
-      const baseName = path.basename(video.originalname, ext);
-      title = baseName.trim();
+      title = video.originalname;
     }
-    const videoTitle = title;
-    
+    const ext = path.extname(title);
+    const baseName = path.basename(title, ext);
+    const videoTitle = baseName.trim();
+
     const videoPath = video.filename.replace(/\s+/g, '-')
     const url = `${process.env.HOST_URL}/uploads/${videoPath}`;
 
