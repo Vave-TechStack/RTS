@@ -4,8 +4,8 @@ import path from 'path';
 
 export const uploadVideo = async (req, res) => {
   try {
-    let { title } = req.body;
     const video = req.file;
+    let { title } = req.body;
     const { course_id, duration_seconds } = req.body;
 
     if (!video || !course_id || !duration_seconds) {
@@ -13,18 +13,19 @@ export const uploadVideo = async (req, res) => {
     }
 
     if (!title || title.trim() === '') {
-      title = video.originalname;
+      const ext = path.extname(video.originalname);
+      const baseName = path.basename(video.originalname, ext);
+      title = baseName.trim();
     }
+    const videoTitle = title;
 
-    const ext = path.extname(title);
-    const baseName = path.basename(title, ext);
-    const videoTitle = baseName.trim();
-
-    const videoPath = video.filename
+    const ext = path.extname(video.filename);
+    const baseName = path.basename(video.filename, ext);
+    const safeBaseName = baseName
       .toLowerCase()
       .replace(/\s+/g, '-')
       .replace(/[^a-z0-9-_]/g, '');
-
+    const videoPath = `${safeBaseName}${ext}`;
     const url = `${process.env.HOST_URL}/uploads/${videoPath}`;
 
     const query = 'INSERT INTO videos (title, course_id, video_url, duration_seconds) VALUES (?, ?, ?, ?)';
