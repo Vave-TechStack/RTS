@@ -4,17 +4,26 @@ import path from 'path';
 
 export const uploadVideo = async (req, res) => {
   try {
-    const { title, course_id, duration_seconds } = req.body;
+    let { title } = req.body;
     const video = req.file;
+    const { course_id, duration_seconds } = req.body;
 
-    if (!video || !title || !course_id || !duration_seconds) {
+    if (!video || !course_id || !duration_seconds) {
       return res.status(400).json({ message: 'Missing required fields' });
     }
 
-    const videoPath = `${process.env.HOST_URL}/uploads/${req.file.filename}`;
+    if (!title || title.trim() === '') {
+      const ext = path.extname(video.originalname);
+      const baseName = path.basename(video.originalname, ext);
+      title = baseName.trim();
+    }
+    const videoTitle = title;
+
+    const videoPath = video.filename.replace(/\s+/g, '-')
+    const url = `${process.env.HOST_URL}/uploads/${videoPath}`;
 
     const query = 'INSERT INTO videos (title, course_id, video_url, duration_seconds) VALUES (?, ?, ?, ?)';
-    const values = [title, course_id, videoPath, duration_seconds];
+    const values = [videoTitle, course_id, videoPath, duration_seconds];
 
     await pool.query(query, values);
 
@@ -22,10 +31,10 @@ export const uploadVideo = async (req, res) => {
       success: true,
       message: 'Video uploaded and URL saved to DB.',
       data: {
-        title,
+        title: videoTitle,
         course_id,
-        url: videoPath,
-        duration_seconds
+        url,
+        duration_seconds,
       },
     });
   } catch (error) {
